@@ -16,10 +16,10 @@
   <!-- please see https://confluence.jetbrains.com/display/IDEADEV/Build+Number+Ranges for description -->
   <idea-version since-build="131"/>
 
-  <!-- please see https://confluence.jetbrains.com/display/IDEADEV/Plugin+Compatibility+with+IntelliJ+Platform+Products
+  <!-- please see https://confluence.jetbrains.com/display/JDEADEV/Plugin+Compatibility+with+IntelliJ+Platform+Products
        on how to target different products -->
   <!-- uncomment to enable plugin in all products
-  <depends>com.intellij.modules.lang</depends>
+  <depends>com.intellijJmodules.lang</depends>
   -->
 
   <extensions defaultExtensionNs="com.intellij">
@@ -35,30 +35,40 @@
   </project-components>
 
   <actions>
-    <!-- Add your actions here -->
+    <!-- Single Commands -->
     <action id="JumpToTarget" class="JumpToTargetAction" text="Jump to the target"
             description="press the button of the char you want to go to. Then press the letter of the char on the overlay">
-      <keyboard-shortcut keymap="$default" first-keystroke="ctrl H" second-keystroke="ctrl J"/>
+      <keyboard-shortcut keymap="$default" first-keystroke="ctrl J" second-keystroke="ctrl J"/>
     </action>
     <action id="InsertCaretAtTarget" class="InsertCaretAtTargetAction" text="Insert caret at the target"
             description="Insert a caret at the destination of the overlay">
-      <keyboard-shortcut keymap="$default" first-keystroke="ctrl H" second-keystroke="ctrl R"/>
+      <keyboard-shortcut keymap="$default" first-keystroke="ctrl J" second-keystroke="ctrl E"/>
     </action>
     <action id="SelectFromCurrentToTarget" class="SelectFromCurrentToTargetAction" text="Select from current position to target position"
             description="Selects the text from the current caret position to the target position defined by the overlay">
-      <keyboard-shortcut keymap="$default" first-keystroke="ctrl H" second-keystroke="ctrl L"/>
+      <keyboard-shortcut keymap="$default" first-keystroke="ctrl J" second-keystroke="ctrl M"/>
     </action>
     <action id="DeleteToTarget" class="DeleteToTargetAction" text="Delete to target"
             description="Delete from the current position to the target position defined by the overlay">
-      <keyboard-shortcut keymap="$default" first-keystroke="ctrl H" second-keystroke="ctrl E"/>
+      <keyboard-shortcut keymap="$default" first-keystroke="ctrl J" second-keystroke="ctrl D"/>
     </action>
     <action id="CutToTarget" class="CutToTargetAction" text="Cut to target position"
             description="Cut the text from the current position to the target position defined by the overlay">
-      <keyboard-shortcut keymap="$default" first-keystroke="ctrl H" second-keystroke="ctrl K"/>
+      <keyboard-shortcut keymap="$default" first-keystroke="ctrl J" second-keystroke="ctrl X"/>
     </action>
+    <action id="CopyFromCurrentToTarget" class="CopyCurrentToTargetAction" text="Copy form current position to target position"
+            description="bla">
+      <keyboard-shortcut keymap="$default" first-keystroke="ctrl J" second-keystroke="ctrl C"/>
+    </action>
+    <action id="PasteToTarget" class="PasteToTargetActon" text="Paste clipboard at the targetposition"
+            description="Paste clipboard at the targetposition">
+      <keyboard-shortcut keymap="$default" first-keystroke="ctrl J" second-keystroke="ctrl V"/>
+    </action>
+
+    <!-- Double Commands -->
     <action id="SelectDoubleCommand" class="SelectDoubleCommandAction" text="Select a region using two overlays"
             description="Select from start position chosen using first over to end position chosen using second overlay">
-      <keyboard-shortcut keymap="$default" first-keystroke="ctrl H" second-keystroke="ctrl F"/>
+      <keyboard-shortcut keymap="$default" first-keystroke="ctrl H" second-keystroke="ctrl M"/>
     </action>
     <action id="DoubleCommandDelete" class="DoubleCommandDeleteAction" text="Delete using two overlays"
             description="Delete from start position chosen using first over to end position chosen using second overlay">
@@ -72,9 +82,9 @@
             description="Insert text at the current position from start position chosen using first over to end position chosen using second overlay">
       <keyboard-shortcut keymap="$default" first-keystroke="ctrl H" second-keystroke="ctrl V"/>
     </action>
-    <action id="ChangeWindow" class="ChangeWindowAction" text="ChangeWindow" description="Change to a random window">
-      <keyboard-shortcut keymap="$default" first-keystroke="ctrl H" second-keystroke="ctrl I"/>
+    <action id="CopyTextDoubleCommand" class="CopyTextDoubleCommandAction" text="Copy text double command"
+            description="Copy text using two overlays">
+      <keyboard-shortcut keymap="$default" first-keystroke="ctrl H" second-keystroke="ctrl C"/>
     </action>
   </actions>
-
 </idea-plugin>
