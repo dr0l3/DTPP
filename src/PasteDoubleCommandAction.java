@@ -15,8 +15,8 @@
  */
 import com.intellij.openapi.actionSystem.AnAction;
 import com.intellij.openapi.actionSystem.AnActionEvent;
+import command.DoubleLayoutCommand;
 import command.EditorCommand;
-import command.StaticCommand;
 import util.LogicUtil;
 
 import java.util.Stack;
@@ -24,13 +24,12 @@ import java.util.Stack;
 /**
  * Created by Rune on 10-10-2015.
  */
-public class SelectFromCurrentToTargetAction extends AnAction {
+public class PasteDoubleCommandAction extends AnAction {
   public void actionPerformed(AnActionEvent e) {
-    Stack<EditorCommand> commandsBeforeJump = LogicUtil.getNullCommandStack();
-    Stack<EditorCommand> commandsAfterJump = new Stack<EditorCommand>();
-
-    StaticCommand commandToExecute = new StaticCommand(
-      e, commandsBeforeJump,commandsAfterJump, "runnable.SelectRunnable");
-    commandToExecute.actionPerformed(e);
+    Stack<EditorCommand> commandsBeforeAction = LogicUtil.getNullCommandStack();
+    Stack<EditorCommand> commandsAfterAction = LogicUtil.getNullCommandStack();
+    DoubleLayoutCommand commandToBePerformed = new DoubleLayoutCommand(
+      e,commandsBeforeAction, commandsAfterAction,"doublecommandrunnable.InsertDoubleCommandRunnable");
+    commandToBePerformed.actionPerformed(e);
   }
 }

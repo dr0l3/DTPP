@@ -16,18 +16,14 @@
 package command;
 
 import com.intellij.openapi.actionSystem.AnActionEvent;
-import com.intellij.openapi.actionSystem.CommonDataKeys;
 import com.intellij.openapi.application.ApplicationManager;
 import com.intellij.openapi.editor.Editor;
-import com.intellij.openapi.project.Project;
 import marker.MarkersPanel;
 import offsets.CharOffsetsFinder;
-import runnable.JumpRunnable;
 import runnable.ShowMarkersSimpleRunnable;
 import util.AppUtil;
 import util.EditorUtil;
 
-import java.awt.event.KeyListener;
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.Stack;
@@ -35,14 +31,15 @@ import java.util.Stack;
 /**
  * Created by Rune on 10-10-2015.
  */
-public class DoubleCommand extends JumpCommand {
+public class DoubleLayoutCommand extends SingleLayoutCommand {
   private int startOffset;
   private boolean firstJumpDone;
   private String nameOfRunnable;
-  public DoubleCommand(
-    AnActionEvent e, Stack<EditorCommand> commandsBeforeJump,
-    Stack<EditorCommand> commandsAfterJump, String nameOfRunnable) {
-    super(e, commandsBeforeJump, commandsAfterJump);
+  public DoubleLayoutCommand(AnActionEvent e,
+                             Stack<EditorCommand> commandsBeforeJump,
+                             Stack<EditorCommand> commandsAfterJump,
+                             String nameOfRunnable) {
+    super(e, commandsBeforeJump, commandsAfterJump,nameOfRunnable);
     firstJumpDone = false;
     this.nameOfRunnable = nameOfRunnable;
   }

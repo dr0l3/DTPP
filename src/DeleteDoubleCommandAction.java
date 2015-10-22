@@ -15,7 +15,7 @@
  */
 import com.intellij.openapi.actionSystem.AnAction;
 import com.intellij.openapi.actionSystem.AnActionEvent;
-import command.DoubleCommand;
+import command.DoubleLayoutCommand;
 import command.EditorCommand;
 import util.LogicUtil;
 
@@ -24,12 +24,12 @@ import java.util.Stack;
 /**
  * Created by Rune on 10-10-2015.
  */
-public class InsertDoubleCommandAction extends AnAction {
+public class DeleteDoubleCommandAction extends AnAction {
   public void actionPerformed(AnActionEvent e) {
     Stack<EditorCommand> commandsBeforeAction = LogicUtil.getNullCommandStack();
     Stack<EditorCommand> commandsAfterAction = LogicUtil.getNullCommandStack();
-    DoubleCommand commandToBePerformed = new DoubleCommand(
-      e,commandsBeforeAction, commandsAfterAction,"doublecommandrunnable.InsertDoubleCommandRunnable");
+    DoubleLayoutCommand commandToBePerformed = new DoubleLayoutCommand(
+      e,commandsBeforeAction, commandsAfterAction,"doublecommandrunnable.DeleteDoubleCommandRunnable");
     commandToBePerformed.actionPerformed(e);
   }
 }

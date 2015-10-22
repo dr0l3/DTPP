@@ -24,7 +24,7 @@ public class JumpRunnable implements Runnable{
     private AnAction _action;
     private Editor _editor;
 
-    public JumpRunnable(int _offsetToJump, AnAction _action, Editor editor) {
+    public JumpRunnable(int _offsetToJump, Editor editor) {
         this._offsetToJump = _offsetToJump;
         this._action = _action;
         this._editor = editor;

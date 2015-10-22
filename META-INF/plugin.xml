@@ -44,15 +44,15 @@
             description="Insert a caret at the destination of the overlay">
       <keyboard-shortcut keymap="$default" first-keystroke="ctrl J" second-keystroke="ctrl E"/>
     </action>
-    <action id="SelectFromCurrentToTarget" class="SelectFromCurrentToTargetAction" text="Select from current position to target position"
+    <action id="SelectFromCurrentToTarget" class="SelectCurrentToTargetAction" text="Select from current position to target position"
             description="Selects the text from the current caret position to the target position defined by the overlay">
       <keyboard-shortcut keymap="$default" first-keystroke="ctrl J" second-keystroke="ctrl M"/>
     </action>
-    <action id="DeleteToTarget" class="DeleteToTargetAction" text="Delete to target"
+    <action id="DeleteToTarget" class="DeleteCurrentToTargetAction" text="Delete to target"
             description="Delete from the current position to the target position defined by the overlay">
       <keyboard-shortcut keymap="$default" first-keystroke="ctrl J" second-keystroke="ctrl D"/>
     </action>
-    <action id="CutToTarget" class="CutToTargetAction" text="Cut to target position"
+    <action id="CutToTarget" class="CutCurrentToTargetAction" text="Cut to target position"
             description="Cut the text from the current position to the target position defined by the overlay">
       <keyboard-shortcut keymap="$default" first-keystroke="ctrl J" second-keystroke="ctrl X"/>
     </action>
@@ -70,7 +70,7 @@
             description="Select from start position chosen using first over to end position chosen using second overlay">
       <keyboard-shortcut keymap="$default" first-keystroke="ctrl H" second-keystroke="ctrl M"/>
     </action>
-    <action id="DoubleCommandDelete" class="DoubleCommandDeleteAction" text="Delete using two overlays"
+    <action id="DoubleCommandDelete" class="DeleteDoubleCommandAction" text="Delete using two overlays"
             description="Delete from start position chosen using first over to end position chosen using second overlay">
       <keyboard-shortcut keymap="$default" first-keystroke="ctrl H" second-keystroke="ctrl D"/>
     </action>
@@ -78,7 +78,7 @@
             description="Cut text from start position chosen using first over to end position chosen using second overlay">
       <keyboard-shortcut keymap="$default" first-keystroke="ctrl H" second-keystroke="ctrl X"/>
     </action>
-    <action id="InsertDoubleCommand" class="InsertDoubleCommandAction" text="insert to current position using two overlays"
+    <action id="InsertDoubleCommand" class="PasteDoubleCommandAction" text="insert to current position using two overlays"
             description="Insert text at the current position from start position chosen using first over to end position chosen using second overlay">
       <keyboard-shortcut keymap="$default" first-keystroke="ctrl H" second-keystroke="ctrl V"/>
     </action>

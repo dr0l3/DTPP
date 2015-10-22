@@ -15,7 +15,7 @@
  */
 package keylisteners;
 
-import command.JumpCommand;
+import command.SingleLayoutCommand;
 
 import javax.swing.*;
 import java.awt.event.KeyEvent;
@@ -26,9 +26,9 @@ import java.awt.event.KeyListener;
  */
 public class ShowMarkersKeyListener implements KeyListener {
   private JComponent contentComponent;
-  private JumpCommand callingCommand;
+  private SingleLayoutCommand callingCommand;
 
-  public ShowMarkersKeyListener(JComponent contentComponent, JumpCommand callingCommand) {
+  public ShowMarkersKeyListener(JComponent contentComponent, SingleLayoutCommand callingCommand) {
     this.contentComponent = contentComponent;
     this.callingCommand = callingCommand;
   }

@@ -39,7 +39,7 @@ public class PasteToTargetRunnable implements Runnable {
   @Override
   public void run() {
     final int oldPosition = editor.getCaretModel().getOffset();
-    editor.getCaretModel().moveToOffset(targetOffset);
+    //editor.getCaretModel().moveToOffset(targetOffset);
     final Document document = editor.getDocument();
     Project project = editor.getProject();
     Runnable runnable = new Runnable() {

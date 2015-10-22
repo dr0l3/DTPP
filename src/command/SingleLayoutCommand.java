@@ -38,21 +38,20 @@ import util.EditorUtil;
 import javax.swing.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.Stack;
 
 /**
  * Created by Rune on 10-10-2015.
  */
-public class JumpCommand extends AnAction {
+public class SingleLayoutCommand extends AnAction {
+  private final String nameOfRunnable;
   protected MarkersPanel _markersPanel;
   protected JComponent _contentComponent;
   protected Editor _editor;
   protected KeyListener _showMarkersKeyListener;
   protected KeyListener _jumpToMarkerKeyListener;
-  protected Stack<CommandAroundJump> _commandsAroundJump;
-  protected Stack<CommandAroundJump> _commandsBeforeJump;
-  protected Stack<CommandAroundJump> _commandsAfterJump;
   protected OffsetsFinder _offsetsFinder;
   protected KeyListener[] _keyListeners;
   protected boolean _isStillRunning;
@@ -65,11 +64,13 @@ public class JumpCommand extends AnAction {
   protected Stack<EditorCommand> commandsBeforeJump_;
   protected Stack<EditorCommand> commandsAfterJump_;
 
-  public JumpCommand(AnActionEvent e,
-                     Stack<EditorCommand> commandsBeforeJump,
-                     Stack<EditorCommand> commandsAfterJump) {
+  public SingleLayoutCommand(AnActionEvent e,
+                             Stack<EditorCommand> commandsBeforeJump,
+                             Stack<EditorCommand> commandsAfterJump,
+                             String nameOfRunnable) {
     commandsAfterJump_ = commandsAfterJump;
     commandsBeforeJump_ = commandsBeforeJump;
+    this.nameOfRunnable = nameOfRunnable;
   }
 
   public void cleanupSetupsInAndBackToNormalEditingMode() {
@@ -133,11 +134,38 @@ public class JumpCommand extends AnAction {
         return false;
       }
 
-      jumpToOffset(_markers.get(key).getOffset());
+      performActionAtOffset(_markers.get(key).getOffset());
       return true;
     }
 
     return false;
+  }
+
+  private void performActionAtOffset(int targetOffset) {
+    for (EditorCommand cmd : commandsBeforeJump_) {
+      cmd.actionToPerform(_event);
+    }
+
+    try{
+      ApplicationManager.getApplication().runReadAction(
+        (Runnable)Class.forName(nameOfRunnable).getConstructor(int.class, Editor.class).newInstance(targetOffset, _editor));
+    } catch (ClassNotFoundException e){
+      e.printStackTrace();
+    } catch (InvocationTargetException e) {
+      e.printStackTrace();
+    } catch (NoSuchMethodException e) {
+      e.printStackTrace();
+    } catch (InstantiationException e) {
+      e.printStackTrace();
+    } catch (IllegalAccessException e) {
+      e.printStackTrace();
+    }
+
+    for (EditorCommand cmd : commandsAfterJump_) {
+      cmd.actionToPerform(_event);
+    }
+
+    cleanupSetupsInAndBackToNormalEditingMode();
   }
 
   protected void jumpToOffset(final int jumpOffset) {
@@ -146,7 +174,7 @@ public class JumpCommand extends AnAction {
     }
 
     ApplicationManager.getApplication().runReadAction(
-      new JumpRunnable(jumpOffset, this, _editor));
+      new JumpRunnable(jumpOffset, _editor));
 
     for (EditorCommand cmd : commandsAfterJump_) {
       cmd.actionToPerform(_event);

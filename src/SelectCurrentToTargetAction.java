@@ -13,15 +13,25 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 import com.intellij.openapi.actionSystem.AnAction;
 import com.intellij.openapi.actionSystem.AnActionEvent;
+import command.EditorCommand;
+import command.SingleLayoutCommand;
+import util.LogicUtil;
+
+import java.util.Stack;
 
 /**
- * Created by Rune on 07-10-2015.
+ * Created by Rune on 10-10-2015.
  */
-public class HelloWorldActionClassName extends AnAction {
+public class SelectCurrentToTargetAction extends AnAction {
   public void actionPerformed(AnActionEvent e) {
-    // TODO: insert action logic here
-    System.out.println("Hello World!");
+    Stack<EditorCommand> commandsBeforeJump = LogicUtil.getNullCommandStack();
+    Stack<EditorCommand> commandsAfterJump = new Stack<EditorCommand>();
+
+    SingleLayoutCommand commandToExecute = new SingleLayoutCommand(
+      e, commandsBeforeJump,commandsAfterJump, "runnable.SelectRunnable");
+    commandToExecute.actionPerformed(e);
   }
 }

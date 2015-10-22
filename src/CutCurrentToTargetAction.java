@@ -13,11 +13,11 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 import com.intellij.openapi.actionSystem.AnAction;
 import com.intellij.openapi.actionSystem.AnActionEvent;
-import com.intellij.openapi.editor.Editor;
 import command.EditorCommand;
-import command.StaticCommand;
+import command.SingleLayoutCommand;
 import util.LogicUtil;
 
 import java.util.Stack;
@@ -25,12 +25,12 @@ import java.util.Stack;
 /**
  * Created by Rune on 10-10-2015.
  */
-public class DeleteToTargetAction extends AnAction {
+public class CutCurrentToTargetAction extends AnAction {
   public void actionPerformed(AnActionEvent e) {
     Stack<EditorCommand> commandsBeforeAction = LogicUtil.getNullCommandStack();
     Stack<EditorCommand> commandsAfterAction = LogicUtil.getNullCommandStack();
-    StaticCommand commandToBePerformed = new StaticCommand(
-      e,commandsBeforeAction, commandsAfterAction,"runnable.DeleteRunnable");
+    SingleLayoutCommand commandToBePerformed = new SingleLayoutCommand(
+      e,commandsBeforeAction, commandsAfterAction,"runnable.CutTextRunnable");
     commandToBePerformed.actionPerformed(e);
   }
 }

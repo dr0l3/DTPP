@@ -13,12 +13,11 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 import com.intellij.openapi.actionSystem.AnAction;
 import com.intellij.openapi.actionSystem.AnActionEvent;
 import command.EditorCommand;
-import command.JumpCommand;
-import command.RecordPositionCommand;
-import command.StaticCommand;
+import command.SingleLayoutCommand;
 import util.LogicUtil;
 
 import java.util.Stack;
@@ -31,7 +30,7 @@ public class InsertCaretAtTargetAction extends AnAction {
     Stack<EditorCommand> commandsBeforeJump = LogicUtil.getNullCommandStack();
     Stack<EditorCommand> commandsAfterJump = LogicUtil.getNullCommandStack();
 
-    StaticCommand commandToExecute = new StaticCommand(
+    SingleLayoutCommand commandToExecute = new SingleLayoutCommand(
       e, commandsBeforeJump, commandsAfterJump,"runnable.InsertCaretRunnable");
     commandToExecute.actionPerformed(e);
   }

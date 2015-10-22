@@ -15,9 +15,8 @@
  */
 import com.intellij.openapi.actionSystem.AnAction;
 import com.intellij.openapi.actionSystem.AnActionEvent;
-import com.intellij.openapi.actionSystem.ex.ActionUtil;
 import command.EditorCommand;
-import command.JumpCommand;
+import command.SingleLayoutCommand;
 import util.LogicUtil;
 
 import java.util.Stack;
@@ -31,9 +30,10 @@ public class JumpToTargetAction extends AnAction {
     Stack<EditorCommand> commandsBeforeJump = LogicUtil.getNullCommandStack();
     Stack<EditorCommand> commandsAfterJump = LogicUtil.getNullCommandStack();
 
-    JumpCommand commandToExecute = new JumpCommand(e,
+    SingleLayoutCommand commandToExecute = new SingleLayoutCommand(e,
                                                    commandsBeforeJump,
-                                                   commandsAfterJump);
+                                                   commandsAfterJump,
+                                                   "runnable.JumpRunnable");
     commandToExecute.actionPerformed(e);
   }
 }

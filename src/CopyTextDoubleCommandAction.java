@@ -15,9 +15,8 @@
  */
 import com.intellij.openapi.actionSystem.AnAction;
 import com.intellij.openapi.actionSystem.AnActionEvent;
-import command.DoubleCommand;
+import command.DoubleLayoutCommand;
 import command.EditorCommand;
-import command.StaticCommand;
 import util.LogicUtil;
 
 import java.util.Stack;
@@ -29,7 +28,7 @@ public class CopyTextDoubleCommandAction extends AnAction {
   public void actionPerformed(AnActionEvent e) {
     Stack<EditorCommand> commandsBeforeAction = LogicUtil.getNullCommandStack();
     Stack<EditorCommand> commandsAfterAction = LogicUtil.getNullCommandStack();
-    DoubleCommand commandToBePerformed = new DoubleCommand(
+    DoubleLayoutCommand commandToBePerformed = new DoubleLayoutCommand(
       e,commandsBeforeAction, commandsAfterAction,"doublecommandrunnable.CopyTextDoubleCommandRunnable");
     commandToBePerformed.actionPerformed(e);
   }

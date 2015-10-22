@@ -13,31 +13,24 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package command;
 
+import com.intellij.openapi.actionSystem.AnAction;
 import com.intellij.openapi.actionSystem.AnActionEvent;
-import com.intellij.openapi.actionSystem.CommonDataKeys;
-import com.intellij.openapi.editor.CaretModel;
-import com.intellij.openapi.editor.Editor;
-import com.intellij.openapi.editor.LogicalPosition;
+import command.EditorCommand;
+import command.SingleLayoutCommand;
+import util.LogicUtil;
 
 import java.util.Stack;
 
 /**
  * Created by Rune on 10-10-2015.
  */
-public class RecordPositionCommand implements EditorCommand{
-  private int offsetBeforeJump;
-
-  @Override
-  public void actionToPerform(AnActionEvent e) {
-    Editor editor = e.getData(CommonDataKeys.EDITOR);
-    CaretModel caretModel = editor.getCaretModel();
-    LogicalPosition logicalPosition = caretModel.getLogicalPosition();
-    offsetBeforeJump = caretModel.getOffset();
-  }
-
-  public int getOffsetBeforeJump() {
-    return offsetBeforeJump;
+public class DeleteCurrentToTargetAction extends AnAction {
+  public void actionPerformed(AnActionEvent e) {
+    Stack<EditorCommand> commandsBeforeAction = LogicUtil.getNullCommandStack();
+    Stack<EditorCommand> commandsAfterAction = LogicUtil.getNullCommandStack();
+    SingleLayoutCommand commandToBePerformed = new SingleLayoutCommand(
+      e,commandsBeforeAction, commandsAfterAction,"runnable.DeleteRunnable");
+    commandToBePerformed.actionPerformed(e);
   }
 }

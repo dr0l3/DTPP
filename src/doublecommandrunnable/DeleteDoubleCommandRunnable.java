@@ -39,10 +39,6 @@ public class DeleteDoubleCommandRunnable implements Runnable {
   public void run() {
     final Document document = editor.getDocument();
     final Project project = editor.getProject();
-    if(startOffset< endOffset)
-      endOffset++;
-    else
-      startOffset++;
     Runnable runnable = new Runnable() {
       @Override
       public void run() {
