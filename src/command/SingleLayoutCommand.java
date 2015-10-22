@@ -19,7 +19,6 @@ import com.intellij.openapi.actionSystem.CommonDataKeys;
 import com.intellij.openapi.application.ApplicationManager;
 import com.intellij.openapi.project.Project;
 import com.intellij.openapi.wm.ToolWindowManager;
-import event.ChainActionEvent;
 import keylisteners.JumpToMarkupKeyListener;
 import com.intellij.openapi.actionSystem.AnActionEvent;
 import com.intellij.openapi.editor.Document;
@@ -36,10 +35,10 @@ import util.AppUtil;
 import util.EditorUtil;
 
 import javax.swing.*;
-import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Stack;
 
 /**
@@ -56,7 +55,6 @@ public class SingleLayoutCommand extends AnAction {
   protected KeyListener[] _keyListeners;
   protected boolean _isStillRunning;
   protected MarkerCollection _markers;
-  protected boolean _isCalledFromOtherAction;
   protected Document _document;
   protected AnActionEvent _event;
   protected Project _project;
@@ -112,13 +110,6 @@ public class SingleLayoutCommand extends AnAction {
 
   protected KeyListener createShowMarkersKeyListener() {
     return new ShowMarkersKeyListener(_contentComponent, this);
-  }
-
-  public void handlePendingActionOnSuccess() {
-    if (_event instanceof ChainActionEvent) {
-      ChainActionEvent chainActionEvent = (ChainActionEvent) _event;
-      chainActionEvent.getPendingAction().run();
-    }
   }
 
   public boolean handleJumpToMarkerKey(char key) {
@@ -230,14 +221,6 @@ public class SingleLayoutCommand extends AnAction {
   }
 
   protected Editor getEditorFrom(AnActionEvent e) {
-    if (e instanceof ChainActionEvent) {
-      ChainActionEvent chainActionEvent = (ChainActionEvent) e;
-      Editor editor = chainActionEvent.getEditor();
-      if (editor != null) {
-        return editor;
-      }
-    }
-
     return e.getData(CommonDataKeys.EDITOR);
   }
 
@@ -258,11 +241,6 @@ public class SingleLayoutCommand extends AnAction {
         return false;
       }
 
-      if (_isCalledFromOtherAction && _markers.hasOnlyOnePlaceToJump()) {
-        jumpToOffset(_markers.getFirstOffset());
-        return false;
-      }
-
       _contentComponent.addKeyListener(_jumpToMarkerKeyListener);
       return true;
     }
@@ -270,7 +248,7 @@ public class SingleLayoutCommand extends AnAction {
     return false;
   }
 
-  protected java.util.List<Integer> getOffsetsOfCharInVisibleArea(char key) {
+  protected List<Integer> getOffsetsOfCharInVisibleArea(char key) {
     if (_markers.get(key) != null) {
       return _markers.get(key).getOffsets();
     }

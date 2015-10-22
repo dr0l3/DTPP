@@ -103,37 +103,12 @@ public class DoubleLayoutCommand extends SingleLayoutCommand {
     cleanupSetupsInAndBackToNormalEditingMode();
   }
 
-  @Override
-  public boolean handleShowMarkersKey(char key) {
-    if (EditorUtil.isPrintableChar(key)) {
-      AppUtil.runReadAction(
-        new ShowMarkersSimpleRunnable(getOffsetsOfCharInVisibleArea(key), _editor, _markers, _markersPanel, _contentComponent));
-
-      if (_markers.hasNoPlaceToJump()) {
-        cleanupSetupsInAndBackToNormalEditingMode();
-        return false;
-      }
-
-      if (_isCalledFromOtherAction && _markers.hasOnlyOnePlaceToJump()) {
-        jumpToOffset(_markers.getFirstOffset());
-        return false;
-      }
-
-      _contentComponent.addKeyListener(_jumpToMarkerKeyListener);
-      return true;
-    }
-
-    return false;
-  }
-
   public void performSecondAction(AnActionEvent e){
     _offsetsFinder = new CharOffsetsFinder();
-
 
     if (_isStillRunning) {
       cleanupSetupsInAndBackToNormalEditingMode();
     }
-
 
     disableAllExistingKeyListeners();
     initKeyListenersAndMarkerCollection();

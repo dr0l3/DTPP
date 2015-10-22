@@ -40,7 +40,6 @@ public class JumpToMarkupKeyListener implements KeyListener {
     boolean jumpFinished = callingCommand.handleJumpToMarkerKey(keyEvent.getKeyChar());
     if (jumpFinished) {
       contentComponent.removeKeyListener(this);
-      callingCommand.handlePendingActionOnSuccess();
     }
   }
 
