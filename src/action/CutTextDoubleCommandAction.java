@@ -1,4 +1,4 @@
-/*
+package action;/*
  * Copyright 2000-2015 JetBrains s.r.o.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -15,8 +15,8 @@
  */
 import com.intellij.openapi.actionSystem.AnAction;
 import com.intellij.openapi.actionSystem.AnActionEvent;
+import command.DoubleLayoutCommand;
 import command.EditorCommand;
-import command.SingleLayoutCommand;
 import util.LogicUtil;
 
 import java.util.Stack;
@@ -24,16 +24,12 @@ import java.util.Stack;
 /**
  * Created by Rune on 10-10-2015.
  */
-public class JumpToTargetAction extends AnAction {
+public class CutTextDoubleCommandAction extends AnAction {
   public void actionPerformed(AnActionEvent e) {
-    //init actions before jump
-    Stack<EditorCommand> commandsBeforeJump = LogicUtil.getNullCommandStack();
-    Stack<EditorCommand> commandsAfterJump = LogicUtil.getNullCommandStack();
-
-    SingleLayoutCommand commandToExecute = new SingleLayoutCommand(e,
-                                                   commandsBeforeJump,
-                                                   commandsAfterJump,
-                                                   "runnable.JumpRunnable");
-    commandToExecute.actionPerformed(e);
+    Stack<EditorCommand> commandsBeforeAction = LogicUtil.getNullCommandStack();
+    Stack<EditorCommand> commandsAfterAction = LogicUtil.getNullCommandStack();
+    DoubleLayoutCommand commandToBePerformed = new DoubleLayoutCommand(
+      e,commandsBeforeAction, commandsAfterAction,"doublecommandrunnable.CutTextDoubleCommandRunnable");
+    commandToBePerformed.actionPerformed(e);
   }
 }

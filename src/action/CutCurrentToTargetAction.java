@@ -1,4 +1,4 @@
-/*
+package action;/*
  * Copyright 2000-2015 JetBrains s.r.o.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -13,10 +13,11 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 import com.intellij.openapi.actionSystem.AnAction;
 import com.intellij.openapi.actionSystem.AnActionEvent;
-import command.DoubleLayoutCommand;
 import command.EditorCommand;
+import command.SingleLayoutCommand;
 import util.LogicUtil;
 
 import java.util.Stack;
@@ -24,12 +25,12 @@ import java.util.Stack;
 /**
  * Created by Rune on 10-10-2015.
  */
-public class PasteDoubleCommandAction extends AnAction {
+public class CutCurrentToTargetAction extends AnAction {
   public void actionPerformed(AnActionEvent e) {
     Stack<EditorCommand> commandsBeforeAction = LogicUtil.getNullCommandStack();
     Stack<EditorCommand> commandsAfterAction = LogicUtil.getNullCommandStack();
-    DoubleLayoutCommand commandToBePerformed = new DoubleLayoutCommand(
-      e,commandsBeforeAction, commandsAfterAction,"doublecommandrunnable.InsertDoubleCommandRunnable");
+    SingleLayoutCommand commandToBePerformed = new SingleLayoutCommand(
+      e,commandsBeforeAction, commandsAfterAction,"runnable.CutTextRunnable");
     commandToBePerformed.actionPerformed(e);
   }
 }

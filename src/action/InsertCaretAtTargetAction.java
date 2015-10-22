@@ -1,4 +1,4 @@
-/*
+package action;/*
  * Copyright 2000-2015 JetBrains s.r.o.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -23,14 +23,15 @@ import util.LogicUtil;
 import java.util.Stack;
 
 /**
- * Created by Rune on 14-10-2015.
+ * Created by Rune on 10-10-2015.
  */
-public class CopyCurrentToTargetAction extends AnAction {
+public class InsertCaretAtTargetAction extends AnAction {
   public void actionPerformed(AnActionEvent e) {
-    Stack<EditorCommand> commandsBeforeAction = LogicUtil.getNullCommandStack();
-    Stack<EditorCommand> commandsAfterAction = LogicUtil.getNullCommandStack();
-    SingleLayoutCommand commandToBePerformed = new SingleLayoutCommand(
-      e,commandsBeforeAction, commandsAfterAction,"runnable.CopyFromCurrentToTargetRunnable");
-    commandToBePerformed.actionPerformed(e);
+    Stack<EditorCommand> commandsBeforeJump = LogicUtil.getNullCommandStack();
+    Stack<EditorCommand> commandsAfterJump = LogicUtil.getNullCommandStack();
+
+    SingleLayoutCommand commandToExecute = new SingleLayoutCommand(
+      e, commandsBeforeJump, commandsAfterJump,"runnable.InsertCaretRunnable");
+    commandToExecute.actionPerformed(e);
   }
 }
