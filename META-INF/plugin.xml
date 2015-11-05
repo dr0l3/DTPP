@@ -98,5 +98,10 @@
             description="Comment block selected using two overlays">
       <keyboard-shortcut keymap="$default" first-keystroke="ctrl H" second-keystroke="ctrl K"/>
     </action>
+    <action id="ExitParenthesisEtc" class="action.ExitParanthesisEtcAction"
+            text="Moves the caret outside the current bracket/paranthesis etc"
+            description="Moves the caret outside the current bracket/paranthesis etc">
+      <keyboard-shortcut keymap="$default" first-keystroke="ctrl J" second-keystroke="ctrl G"/>
+    </action>
   </actions>
 </idea-plugin>
