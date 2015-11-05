@@ -86,5 +86,17 @@
             description="Copy text using two overlays">
       <keyboard-shortcut keymap="$default" first-keystroke="ctrl H" second-keystroke="ctrl C"/>
     </action>
+    <action id="NewlineAfterTarget" class="action.NewlineAfterTargetAction" text="Create newline after target and go newline"
+            description="Create newline after target and go newline">
+      <keyboard-shortcut keymap="$default" first-keystroke="ctrl J" second-keystroke="ctrl N"/>
+    </action>
+    <action id="CommentLineAtTarget" class="action.CommentLineAtTargetAction" text="Comment line at the target"
+            description="Comment the line at the target">
+      <keyboard-shortcut keymap="$default" first-keystroke="ctrl J" second-keystroke="ctrl K"/>
+    </action>
+    <action id="CommentBlockDoubleCommand" class="action.CommentBlockDoubleCommandAction" text="Comment block selected using two overlays"
+            description="Comment block selected using two overlays">
+      <keyboard-shortcut keymap="$default" first-keystroke="ctrl H" second-keystroke="ctrl K"/>
+    </action>
   </actions>
 </idea-plugin>

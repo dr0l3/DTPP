@@ -15,20 +15,24 @@
  */
 package doublecommandrunnable;
 
+import com.intellij.codeInsight.generation.actions.CommentByBlockCommentAction;
+import com.intellij.codeInsight.generation.actions.CommentByLineCommentAction;
+import com.intellij.openapi.actionSystem.IdeActions;
 import com.intellij.openapi.command.WriteCommandAction;
-import com.intellij.openapi.editor.Document;
+import com.intellij.openapi.editor.Caret;
 import com.intellij.openapi.editor.Editor;
+import com.intellij.openapi.editor.LogicalPosition;
 import com.intellij.openapi.project.Project;
 
 /**
- * Created by Rune on 10-10-2015.
+ * Created by Rune on 05-11-2015.
  */
-public class InsertDoubleCommandRunnable implements Runnable {
+public class CommentBlockDoubleCommandRunnable implements Runnable {
   private int startOffset;
   private int endOffset;
   private Editor editor;
 
-  public InsertDoubleCommandRunnable(int startOffset, int endOffset, Editor editor) {
+  public CommentBlockDoubleCommandRunnable(int startOffset, int endOffset, Editor editor) {
     this.startOffset = startOffset;
     this.endOffset = endOffset;
     this.editor = editor;
@@ -36,24 +40,23 @@ public class InsertDoubleCommandRunnable implements Runnable {
 
   @Override
   public void run() {
-    if(startOffset< endOffset)
-      endOffset++;
-    else
-      startOffset++;
-    final int oldPosition = editor.getCaretModel().getOffset();
-    int newPosition = oldPosition + Math.abs(endOffset-startOffset);
-    final Document document = editor.getDocument();
     final Project project = editor.getProject();
-    editor.getSelectionModel().setSelection(startOffset,endOffset);
-    Runnable runnable = new Runnable() {
+    final LogicalPosition oldPos = editor.getCaretModel().getLogicalPosition();
+    Runnable runnable1 = new Runnable() {
       @Override
       public void run() {
-        document.replaceString(
-          oldPosition,oldPosition, editor.getSelectionModel().getSelectedText());
+        Caret caret = editor.getCaretModel()
+          .getCurrentCaret();
+        caret.setSelection(startOffset,endOffset+1);
+
+        CommentByBlockCommentAction commentAction = new CommentByBlockCommentAction();
+        commentAction.actionPerformedImpl(project,editor);
+
+        caret.removeSelection();
+        caret.moveToLogicalPosition(oldPos);
       }
     };
-    WriteCommandAction.runWriteCommandAction(project, runnable);
-    editor.getSelectionModel().removeSelection();
-    editor.getCaretModel().moveToOffset(newPosition);
+
+    WriteCommandAction.runWriteCommandAction(project, runnable1);
   }
 }

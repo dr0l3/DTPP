@@ -69,6 +69,7 @@ public class SingleLayoutCommand extends AnAction {
     commandsAfterJump_ = commandsAfterJump;
     commandsBeforeJump_ = commandsBeforeJump;
     this.nameOfRunnable = nameOfRunnable;
+    this._event = e;
   }
 
   public void cleanupSetupsInAndBackToNormalEditingMode() {
