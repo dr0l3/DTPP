@@ -61,7 +61,7 @@
     <!-- Single Commands -->
     <action id="JumpToTarget" class="action.JumpToTargetAction" text="Jump to the target"
             description="press the button of the char you want to go to. Then press the letter of the char on the overlay">
-      <keyboard-shortcut keymap="$default" first-keystroke="ctrl J" second-keystroke="ctrl J"/>
+      <keyboard-shortcut keymap="$default" first-keystroke="ctrl J" second-keystroke="ctrl G"/>
     </action>
     <action id="InsertCaretAtTarget" class="action.InsertCaretAtTargetAction" text="Insert caret at the target"
             description="Insert a caret at the destination of the overlay">
@@ -86,6 +86,11 @@
     <action id="PasteToTarget" class="action.PasteToTargetActon" text="Paste clipboard at the targetposition"
             description="Paste clipboard at the targetposition">
       <keyboard-shortcut keymap="$default" first-keystroke="ctrl J" second-keystroke="ctrl V"/>
+    </action>
+    <action id="ExitParenthesisEtc" class="action.ExitParanthesisEtcAction"
+            text="Moves the caret outside the current bracket/paranthesis etc"
+            description="Moves the caret outside the current bracket/paranthesis etc">
+      <keyboard-shortcut keymap="$default" first-keystroke="ctrl J" second-keystroke="ctrl J"/>
     </action>
 
     <!-- Double Commands -->
@@ -120,11 +125,6 @@
     <action id="CommentBlockDoubleCommand" class="action.CommentBlockDoubleCommandAction" text="Comment block selected using two overlays"
             description="Comment block selected using two overlays">
       <keyboard-shortcut keymap="$default" first-keystroke="ctrl H" second-keystroke="ctrl K"/>
-    </action>
-    <action id="ExitParenthesisEtc" class="action.ExitParanthesisEtcAction"
-            text="Moves the caret outside the current bracket/paranthesis etc"
-            description="Moves the caret outside the current bracket/paranthesis etc">
-      <keyboard-shortcut keymap="$default" first-keystroke="ctrl J" second-keystroke="ctrl G"/>
     </action>
   </actions>
 </idea-plugin>
