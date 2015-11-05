@@ -1,19 +1,19 @@
+<!--
+  ~ Copyright 2000-2015 JetBrains s.r.o.
+  ~
+  ~ Licensed under the Apache License, Version 2.0 (the "License");
+  ~ you may not use this file except in compliance with the License.
+  ~ You may obtain a copy of the License at
+  ~
+  ~ http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the License is distributed on an "AS IS" BASIS,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~ See the License for the specific language governing permissions and
+  ~ limitations under the License.
+  -->
 <idea-plugin version="2">
-<<<<<<< HEAD
-  <id>com.yourcompany.unique.plugin.id</id>
-  <name>Plugin display name here</name>
-  <version>1.0</version>
-  <vendor email="support@yourcompany.com" url="http://www.yourcompany.com">YourCompany</vendor>
-
-  <description><![CDATA[
-      Enter short description for your plugin here.<br>
-      <em>most HTML tags may be used</em>
-    ]]></description>
-
-  <change-notes><![CDATA[
-      Add change notes here.<br>
-      <em>most HTML tags may be used</em>
-=======
   <id>com.droletoursInc.productivity.plugin</id>
   <name>DroleToursProductivityTools</name>
   <version>1.0</version>
@@ -21,28 +21,26 @@
 
   <description><![CDATA[
       Addon that lets you traverse and edit text much like easymotion<br>
-    ]]></description>
+    ]]>
+  </description>
 
   <change-notes><![CDATA[
       Version 1.0 Hurray!<br>
->>>>>>> 5607f7909a74f35bbee1e0b171dfdc85424234c7
-    ]]>
+      ]]>
   </change-notes>
 
   <!-- please see https://confluence.jetbrains.com/display/IDEADEV/Build+Number+Ranges for description -->
   <idea-version since-build="131"/>
 
-<<<<<<< HEAD
   <!-- please see https://confluence.jetbrains.com/display/IDEADEV/Plugin+Compatibility+with+IntelliJ+Platform+Products
        on how to target different products -->
-  <!-- uncomment to enable plugin in all products
-  <depends>com.intellij.modules.lang</depends>
-=======
+  <!-- uncomment to enable plugin in all products -->
+  <!--depends>com.intellij.modules.lang</depends -->
+
   <!-- please see https://confluence.jetbrains.com/display/JDEADEV/Plugin+Compatibility+with+IntelliJ+Platform+Products
        on how to target different products -->
   <!-- uncomment to enable plugin in all products
   <depends>com.intellijJmodules.lang</depends>
->>>>>>> 5607f7909a74f35bbee1e0b171dfdc85424234c7
   -->
 
   <extensions defaultExtensionNs="com.intellij">
@@ -58,10 +56,7 @@
   </project-components>
 
   <actions>
-<<<<<<< HEAD
     <!-- Add your actions here -->
-  </actions>
-
 =======
     <!-- Single Commands -->
     <action id="JumpToTarget" class="action.JumpToTargetAction" text="Jump to the target"
@@ -132,5 +127,4 @@
       <keyboard-shortcut keymap="$default" first-keystroke="ctrl J" second-keystroke="ctrl G"/>
     </action>
   </actions>
->>>>>>> 5607f7909a74f35bbee1e0b171dfdc85424234c7
 </idea-plugin>

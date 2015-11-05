@@ -34,6 +34,18 @@ public class ExitParanthesisEtcAction extends AnAction {
     int offset = caret.getOffset();
     TextRange textRange = new TextRange(offset, offset+1);
     String charAtCaret = document.getText(textRange);
-    System.out.println(charAtCaret);
+
+    while(!charAtCaret.contains("\"")
+       && !charAtCaret.contains("}")
+       && !charAtCaret.contains(")")
+       && !charAtCaret.contains("]")
+       && !charAtCaret.contains("\'")){
+      offset += 1;
+      caret.moveToOffset(offset);
+      textRange = new TextRange(offset, offset+1);
+      charAtCaret = document.getText(textRange);
+    }
+    offset += 1;
+    caret.moveToOffset(offset);
   }
 }
